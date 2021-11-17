@@ -1,0 +1,62 @@
+.background {
+  height: 45rem;
+  width: 32rem;
+  background: url("fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+
+.selena {
+  height: 45rem;
+  width: 32rem;
+  background: url("selena.png");
+  display: inline-block;
+  vertical-align: top;
+}
+
+.title {
+  margin-top: 0rem;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+.column {
+  float: left;
+  width: 27%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.row {
+  text-align: center;
+  height: 45%;
+}
+
+.title-label {
+  display: inline-block;
+  margin-top: -3.5rem;
+  font-family: "Playfair Display", serif;
+  color: white;
+  font-size: 10rem;
+}
+
+.title-label.in {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.title-label.out.left {
+  margin-right: 1rem;
+}
+
+.title-label.out.right {
+  margin-left: 1rem;
+}
+
+.minus-label {
+  font-family: "Playfair Display", serif;
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
