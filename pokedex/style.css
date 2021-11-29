@@ -1,0 +1,45 @@
+body{
+    background: #F7F7F7;
+}
+main{
+    
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.logo{
+    background: url(https://www.kindpng.com/picc/m/2-24125_pokemon-logo-transparent-hd-png-download.png) no-repeat 0 0;
+    background-size: cover;
+    width: 200px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+#pokemons{
+    max-width: 700px;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: sans-serif;
+    text-transform: capitalize;
+    justify-content: center;
+    align-items: center;
+}
+.pokemon{
+    text-align: center;
+    background:#fff;
+    /* border: solid 1px #ddd; */
+    border-radius: 10px;
+    margin: 0 5px 10px 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+.pokemon:hover{
+    background: oldlace;
+}
+@media (max-width:680px) {
+    main{
+        
+    }
+}
