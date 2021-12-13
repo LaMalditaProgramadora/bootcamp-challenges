@@ -1,0 +1,60 @@
+body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.team {
+  width: 70%;
+}
+.team__crew {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 80%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.team__details {
+  display: flex;
+  justify-content: space-around;
+}
+.team__title {
+  width: 60%;
+  font-size: 2.5rem;
+}
+.team__description {
+  width: 40%;
+  text-align: justify;
+  padding-right: 10%;
+  font-family: "Poppins", sans-serif;
+}
+.team__footer {
+  display: flex;
+  justify-content: center;
+}
+
+.member {
+  width: 33%;
+}
+.member--two {
+  align-self: flex-end;
+}
+.member--five {
+  align-self: flex-end;
+}
+.member__profile {
+  display: flex;
+}
+.member__photo {
+  max-width: 60%;
+}
+.member__role {
+  writing-mode: vertical-lr;
+}
+.member__name {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=style.css.map */

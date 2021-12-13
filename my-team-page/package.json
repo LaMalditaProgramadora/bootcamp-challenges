@@ -1,0 +1,16 @@
+{
+  "name": "my-team-page",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile:sass": "sass src/scss/style.scss src/css/style.css",
+    "scss": "sass --watch src/scss:src/css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.44.0"
+  }
+}

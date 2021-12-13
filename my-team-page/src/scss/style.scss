@@ -1,0 +1,58 @@
+body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.team {
+  width: 70%;
+  &__crew {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 80%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  &__details {
+    display: flex;
+    justify-content: space-around;
+  }
+  &__title {
+    width: 60%;
+    font-size: 2.5rem;
+  }
+  &__description {
+    width: 40%;
+    text-align: justify;
+    padding-right: 10%;
+    font-family: "Poppins", sans-serif;
+  }
+  &__footer {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.member {
+  width: 33%;
+  &--two {
+    align-self: flex-end;
+  }
+  &--five {
+    align-self: flex-end;
+  }
+  &__profile {
+    display: flex;
+  }
+  &__photo {
+    max-width: 60%;
+  }
+  &__role {
+    writing-mode:vertical-lr;
+  }
+  &__name {
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+  }
+}
