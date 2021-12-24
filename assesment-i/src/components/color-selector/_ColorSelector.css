@@ -1,0 +1,35 @@
+.color__selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.colorBox {
+  margin: 0 1rem;
+  display: inline-block;
+  border: 0.05rem solid black;
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+}
+
+.colorBox--red {
+  background-color: rgb(217, 2, 0);
+}
+
+.colorBox--olive {
+  background-color: rgb(113, 106, 2);
+}
+
+.colorBox--orange {
+  background-color: rgb(249, 171, 0);
+}
+
+.colorBox--white {
+  background-color: white;
+}
+
+.blow {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
