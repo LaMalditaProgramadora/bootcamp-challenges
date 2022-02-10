@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.calculator {
+  text-align: center;
+  border-style: double;
+  border-color: black;
+  width: 18rem;
+}
+
+.button {
+  height: 3rem;
+  width: 3rem;
+}
+
+.screen {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.title {
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
