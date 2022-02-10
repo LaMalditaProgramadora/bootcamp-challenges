@@ -1,8 +1,10 @@
 ## Proyecto: Opción 2
 
-¡Haz un Mario! (Código aquí mismo).
+¡Haz un Mario!
 
-![alt text](https://lh3.googleusercontent.com/GwOjVc5b2tnqo2wGVYwSajDC9p3UVKtLr52kKQ2aSblJbT33iPlMPGPKjEPKdHzdiFoQ-6n71ANFIH7oSeh4t3OWA6vx_c7onGl-wQuXPD-MqvRfihLNqnw0paMxhZUexs1thEM0iJX7BqxI0-R7fs3qdYvRnj_TWMSPld3w6HLNHRhPLQwPWqkyIhU4ATesG6DXQ78XGaRtliy-QTWoJG49ZMqE9b1-hgXVjCFd9-j-vqgPbj07wZ8BYKt0FB10a9OfLqXvewZDVcF2XYaEJdAanfI01dqpBxtq7izGRdGyjkreMpX5b5CPYItjDvKMGtsHA7vvC6zOMsEe-p-xrw4W5XrH7FK6xRqWDycAuQUVwCx6VaIgZ2hxinngYVcjqumNCDDOwX614BUfeiE4EkPLFm140q693j7hULGL5gxdH_t_P6MTIMJx_Gmgu4EiBU_4Jdjq_l1N1IcLDFGL8x1ukNPjcikiWgC7ESt_OTGf8JXicRUJNfMh7ot9k3kOd8AYsu_laXqqGNhWR80j6NI_YLyJX6BimalxHm9ZWFtew16nfYIaGYxlyC-ixxjXCFYKGuiC3MgeYLMIwr5o8hH19HEO27sd1BrOot2RF9dp4i6HPK3O3Zgm6lpAuz4w914kjbIu92nDDow_ZqZFtryg_pMmzdACpLeAHhYIRPueC-rIEGbtpzRTognYm3MUUkCXB1ggA-8o6zFsJzRf0mE4_Q=w803-h869-no?authuser=0)
+[¡Prueba aquí!](https://assesment-i-jimena.netlify.app/)
+
+![alt text](https://i.postimg.cc/13n7bb4B/mario.png)
 
 ## Preguntas
 
