@@ -1,0 +1,8 @@
+.textBox {
+  width: 12.5rem;
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
+}
+.select {
+  text-align: left;
+}
