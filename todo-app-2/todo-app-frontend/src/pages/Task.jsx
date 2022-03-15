@@ -28,7 +28,12 @@ const Task = () => {
             <label>
               <b>Mis Tareas</b>
             </label>
-            <TaskTable id={getIdUser()} tasks={tasks} />
+            <TaskTable
+              id={getIdUser()}
+              tasks={tasks}
+              reload={getTasksFromApi}
+              type="user"
+            />
           </Paper>
         </Grid>
       </Grid>

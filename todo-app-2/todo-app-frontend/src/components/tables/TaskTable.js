@@ -1,6 +1,7 @@
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import { Snackbar } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -11,11 +12,32 @@ import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
 import CreateTaskDialog from "../../components/dialogs/CreateTaskDialog";
 import UpdateTaskDialog from "../../components/dialogs/UpdateTaskDialog";
+import { removeTaskGroup } from "../../services/GroupService";
+import { removeTaskUser } from "../../services/UserService";
 
-const TaskTable = ({ id, tasks }) => {
+const TaskTable = ({ id, type, tasks, reload }) => {
+  const [snackbar, setSnackbar] = useState({ open: false, message: "" });
   const [updateTask, setUpdateTask] = useState({});
   const [openUpdateTask, setOpenUpdateTask] = useState(false);
   const [openCreateTask, setOpenCreateTask] = useState(false);
+
+  const removeTaskFromApi = (idTask) => {
+    if (type === "user") {
+      removeTaskUser(id, idTask).then((data) => {
+        setSnackbar({ open: true, message: data.message });
+        if (data.status === 1) {
+          reload();
+        }
+      });
+    } else {
+      removeTaskGroup(id, idTask).then((data) => {
+        setSnackbar({ open: true, message: data.message });
+        if (data.status === 1) {
+          reload();
+        }
+      });
+    }
+  };
 
   return (
     <>
@@ -23,12 +45,14 @@ const TaskTable = ({ id, tasks }) => {
         updateTask={updateTask}
         open={openUpdateTask}
         setOpen={setOpenUpdateTask}
+        reload={reload}
       ></UpdateTaskDialog>
       <CreateTaskDialog
         id={id}
-        type="user"
+        type={type}
         open={openCreateTask}
         setOpen={setOpenCreateTask}
+        reload={reload}
       ></CreateTaskDialog>
       <AddTaskIcon
         style={{ cursor: "pointer" }}
@@ -69,13 +93,22 @@ const TaskTable = ({ id, tasks }) => {
                   />
                 </TableCell>
                 <TableCell width={40}>
-                  <DeleteIcon style={{ cursor: "pointer" }} />
+                  <DeleteIcon
+                    style={{ cursor: "pointer" }}
+                    onClick={() => removeTaskFromApi(task._id)}
+                  />
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={4000}
+        message={snackbar.message}
+        onClose={() => setSnackbar({ open: false, message: "" })}
+      />
     </>
   );
 };

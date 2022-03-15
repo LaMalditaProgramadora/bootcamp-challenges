@@ -14,7 +14,7 @@ export const register = async (user) => {
   return data;
 };
 
-export const addTask = async (idUser, task) => {
+export const addTaskUser = async (idUser, task) => {
   const data = await httpClient
     .post(`/user/addTask?id=${idUser}`, task)
     .then((v) => {
@@ -23,7 +23,7 @@ export const addTask = async (idUser, task) => {
   return data;
 };
 
-export const removeTask = async (idUser, idTask) => {
+export const removeTaskUser = async (idUser, idTask) => {
   const data = await httpClient
     .delete(`/user/removeTask?idUser=${idUser}&idTask=${idTask}`)
     .then((v) => {

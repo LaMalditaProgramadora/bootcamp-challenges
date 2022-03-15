@@ -9,7 +9,7 @@ const PasswordRecovery = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      eamil: data.get("email"),
+      email: data.get("email"),
     });
   };
 

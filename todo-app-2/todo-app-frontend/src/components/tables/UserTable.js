@@ -10,9 +10,21 @@ import AddUserDialog from "../dialogs/AddUserDialog";
 import Paper from "@mui/material/Paper";
 import { useState } from "react";
 import { getIdUser } from "../../services/StorageService";
+import { removeUser } from "../../services/GroupService";
+import { Snackbar } from "@mui/material";
 
-const UserTable = ({ id, users }) => {
+const UserTable = ({ id, users, reload }) => {
+  const [snackbar, setSnackbar] = useState({ open: false, message: "" });
   const [openAddUser, setOpenAddUser] = useState(false);
+
+  const removeUserFromApi = (idUser) => {
+    removeUser(id, idUser).then((data) => {
+      setSnackbar({ open: true, message: data.message });
+      if (data.status === 1) {
+        reload();
+      }
+    });
+  };
 
   return (
     <>
@@ -20,6 +32,7 @@ const UserTable = ({ id, users }) => {
         idGroup={id}
         open={openAddUser}
         setOpen={setOpenAddUser}
+        reload={reload}
       ></AddUserDialog>
       <PersonAddIcon
         style={{ cursor: "pointer" }}
@@ -51,7 +64,12 @@ const UserTable = ({ id, users }) => {
                 <TableCell>{user.email}</TableCell>
                 <TableCell width={40}>
                   {user._id !== getIdUser() ? (
-                    <DeleteIcon style={{ cursor: "pointer" }} />
+                    <DeleteIcon
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        removeUserFromApi(user._id);
+                      }}
+                    />
                   ) : (
                     <DeleteIcon color="disabled" />
                   )}
@@ -61,6 +79,12 @@ const UserTable = ({ id, users }) => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={4000}
+        message={snackbar.message}
+        onClose={() => setSnackbar({ open: false, message: "" })}
+      />
     </>
   );
 };

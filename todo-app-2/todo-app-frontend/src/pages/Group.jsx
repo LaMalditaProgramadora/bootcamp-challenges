@@ -8,12 +8,14 @@ import { get } from "../services/GroupService";
 
 const Group = () => {
   const { id } = useParams();
+  const [name, setName] = useState("Grupo");
   const [tasks, setTasks] = useState([]);
   const [users, setUsers] = useState([]);
 
   const getDataFromApi = () => {
     get(id).then((data) => {
       if (data.data) {
+        setName(data.data.name);
         setTasks(data.data.tasks);
         setUsers(data.data.users);
       }
@@ -23,7 +25,7 @@ const Group = () => {
   useEffect(() => {
     getDataFromApi();
     // eslint-disable-next-line
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -31,17 +33,22 @@ const Group = () => {
         <Grid item xs={12}>
           <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
             <label>
-              <b>Usuarios del Grupo 1</b>
+              <b>Usuarios de {name}</b>
             </label>
-            <UserTable id={id} users={users} />
+            <UserTable id={id} users={users} reload={getDataFromApi} />
           </Paper>
           <br></br>
           <br></br>
           <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
             <label>
-              <b>Tareas del Grupo 1</b>
+              <b>Tareas de {name}</b>
             </label>
-            <TaskTable id={id} tasks={tasks} />
+            <TaskTable
+              type="group"
+              id={id}
+              tasks={tasks}
+              reload={getDataFromApi}
+            />
           </Paper>
         </Grid>
       </Grid>

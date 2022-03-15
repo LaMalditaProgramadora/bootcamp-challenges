@@ -8,8 +8,8 @@ export const update = async (req, res) => {
     task.name = body.name;
     task.status = body.status;
     const saveTask = await task.save();
-    res.json(createResponse("1", "Guardado exitoso", saveTask));
+    res.json(createResponse(1, "Guardado exitoso", saveTask));
   } catch (e) {
-    res.json(createResponse("-1", "Error en el servidor", null));
+    res.json(createResponse(-1, "Error en el servidor", null));
   }
 };

@@ -7,7 +7,7 @@ export const create = async (group) => {
   return data;
 };
 
-export const addTask = async (idGroup, task) => {
+export const addTaskGroup = async (idGroup, task) => {
   const data = await httpClient
     .post(`/group/addTask?id=${idGroup}`, task)
     .then((v) => {
@@ -16,7 +16,7 @@ export const addTask = async (idGroup, task) => {
   return data;
 };
 
-export const removeTask = async (idGroup, idTask) => {
+export const removeTaskGroup = async (idGroup, idTask) => {
   const data = await httpClient
     .delete(`/group/removeTask?idGroup=${idGroup}&idTask=${idTask}`)
     .then((v) => {

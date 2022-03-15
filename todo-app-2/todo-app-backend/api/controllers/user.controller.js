@@ -53,9 +53,9 @@ export const addTask = async (req, res) => {
     const saveTask = await task.save();
     user.tasks.push(saveTask._id);
     const userSave = await user.save();
-    res.json(createResponse("1", "Guardado exitoso", saveTask));
+    res.json(createResponse(1, "Guardado exitoso", saveTask));
   } catch {
-    res.json(createResponse("-1", "Error en el servidor", null));
+    res.json(createResponse(-1, "Error en el servidor", null));
   }
 };
 
@@ -66,13 +66,13 @@ export const removeTask = async (req, res) => {
     const deleteTask = await Task.deleteOne({ _id: idTask });
     let newTasks = [];
     user.tasks.forEach((userTask) => {
-      if( userTask.toString() !== idTask) newTasks.push(userTask);
+      if (userTask.toString() !== idTask) newTasks.push(userTask);
     });
     user.tasks = newTasks;
     const userSave = await user.save();
-    res.json(createResponse("1", "Eliminación exitosa", null));
+    res.json(createResponse(1, "Eliminación exitosa", null));
   } catch {
-    res.json(createResponse("-1", "Error en el servidor", null));
+    res.json(createResponse(-1, "Error en el servidor", null));
   }
 };
 

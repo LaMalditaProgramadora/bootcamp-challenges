@@ -29,9 +29,9 @@ export const addTask = async (req, res) => {
     const saveTask = await task.save();
     group.tasks.push(saveTask._id);
     const groupSave = await group.save();
-    res.json(createResponse("1", "Guardado exitoso", saveTask));
+    res.json(createResponse(1, "Guardado exitoso", saveTask));
   } catch {
-    res.json(createResponse("-1", "Error en el servidor", null));
+    res.json(createResponse(-1, "Error en el servidor", null));
   }
 };
 
@@ -46,9 +46,9 @@ export const removeTask = async (req, res) => {
     });
     group.tasks = newTasks;
     const groupSave = await group.save();
-    res.json(createResponse("1", "Eliminación exitosa", null));
+    res.json(createResponse(1, "Eliminación exitosa", null));
   } catch {
-    res.json(createResponse("-1", "Error en el servidor", null));
+    res.json(createResponse(-1, "Error en el servidor", null));
   }
 };
 
@@ -57,14 +57,14 @@ export const addUser = async (req, res) => {
     const { idGroup: idGroup, username: username } = req.query;
     let user = await User.findOne({ username: username });
     if (user === null) {
-      res.json(createResponse("0", "Usuario no encontrado", null));
+      res.json(createResponse(0, "Usuario no encontrado", null));
     } else {
       let registered = false;
       user.groups.forEach((g) => {
         if (g.toString() === idGroup) registered = true;
       });
       if (registered === true) {
-        res.json(createResponse("0", "El usuario ya está en el grupo", null));
+        res.json(createResponse(0, "El usuario ya está en el grupo", null));
       } else {
         user.groups.push(idGroup);
         const userSave = await user.save();
@@ -76,11 +76,11 @@ export const addUser = async (req, res) => {
           username: user.username,
           email: user.email,
         };
-        res.json(createResponse("1", "Guardado exitoso", userWithoutPassword));
+        res.json(createResponse(1, "Guardado exitoso", userWithoutPassword));
       }
     }
   } catch {
-    res.json(createResponse("-1", "Error en el servidor", null));
+    res.json(createResponse(-1, "Error en el servidor", null));
   }
 };
 
@@ -104,8 +104,8 @@ export const removeUser = async (req, res) => {
     user.groups = newGroups;
     const userSave = await user.save();
 
-    res.json(createResponse("1", "Eliminación exitosa", null));
+    res.json(createResponse(1, "Eliminación exitosa", null));
   } catch {
-    res.json(createResponse("-1", "Error en el servidor", null));
+    res.json(createResponse(-1, "Error en el servidor", null));
   }
 };

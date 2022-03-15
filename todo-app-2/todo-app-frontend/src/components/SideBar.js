@@ -40,7 +40,11 @@ const SideBar = () => {
 
   return (
     <>
-      <CreateGroupDialog open={open} idUser={getIdUser()} setOpen={setOpen} />
+      <CreateGroupDialog
+        open={open}
+        setOpen={setOpen}
+        reload={getGroupsFromApi}
+      />
       <Drawer variant="permanent" open={true}>
         <List component="nav">
           <Item description={getUsername()} icon={<PersonIcon />} />
