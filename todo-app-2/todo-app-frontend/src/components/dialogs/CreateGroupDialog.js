@@ -6,9 +6,9 @@ import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
 
-const CreateGroupDialog = ({ idUser, open, closeDialog }) => {
+const CreateGroupDialog = ({ idUser, open, setOpen }) => {
   const handleClose = () => {
-    closeDialog();
+    setOpen(false);
   };
 
   return (

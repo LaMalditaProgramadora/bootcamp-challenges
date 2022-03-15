@@ -7,11 +7,11 @@ import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
 
-const CreateTaskDialog = ({ id, type, open, closeDialog }) => {
+const CreateTaskDialog = ({ id, type, open, setOpen }) => {
   const [task, setTask] = React.useState({ name: "", status: "No Iniciada" });
 
   const handleClose = () => {
-    closeDialog();
+    setOpen(false);
   };
 
   return (

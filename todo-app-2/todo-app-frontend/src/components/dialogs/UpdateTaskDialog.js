@@ -7,11 +7,11 @@ import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
 
-const UpdateTaskDialog = ({ updateTask, open, closeDialog }) => {
+const UpdateTaskDialog = ({ updateTask, open, setOpen }) => {
   const [task, setTask] = React.useState({});
 
   const handleClose = () => {
-    closeDialog();
+    setOpen(false);
   };
 
   React.useEffect(() => {

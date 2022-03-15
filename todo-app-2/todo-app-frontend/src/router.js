@@ -5,11 +5,12 @@ import PasswordRecovery from "./pages/PasswordRecovery.jsx";
 import Task from "./pages/Task.jsx";
 import Group from "./pages/Group.jsx";
 import Layout from "./components/Layout";
+import LoginTheme from "./components/mui/LoginTheme";
 
 export const AppRouter = () => {
   return useRoutes([
     {
-      path: "/todo-app",
+      path: "/",
       element: <Layout />,
       children: [
         { path: "task", element: <Task /> },
@@ -18,6 +19,7 @@ export const AppRouter = () => {
     },
     {
       path: "/",
+      element: <LoginTheme />,
       children: [
         { path: "/", element: <Navigate to="/login" /> },
         { path: "login", element: <Login /> },

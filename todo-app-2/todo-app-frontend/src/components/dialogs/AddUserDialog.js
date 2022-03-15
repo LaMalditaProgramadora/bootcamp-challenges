@@ -6,9 +6,9 @@ import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
 
-const AddUserDialog = ({open, closeDialog, idGroup}) => {
+const AddUserDialog = ({ open, setOpen, idGroup }) => {
   const handleClose = () => {
-    closeDialog();
+    setOpen(false);
   };
 
   return (

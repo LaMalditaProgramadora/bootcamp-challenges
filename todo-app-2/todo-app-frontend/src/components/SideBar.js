@@ -1,145 +1,83 @@
 import GroupIcon from "@mui/icons-material/Group";
+import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
 import TaskIcon from "@mui/icons-material/Task";
-import LogoutIcon from "@mui/icons-material/Logout";
-import { ListItem } from "@mui/material";
 import Divider from "@mui/material/Divider";
-import MuiDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
-import { styled } from "@mui/material/styles";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CreateGroupDialog from "./dialogs/CreateGroupDialog";
-
-const drawerWidth = 240;
-
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  "& .MuiDrawer-paper": {
-    position: "relative",
-    whiteSpace: "nowrap",
-    width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    boxSizing: "border-box",
-    ...(!open && {
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      width: theme.spacing(7),
-      [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(9),
-      },
-    }),
-  },
-}));
+import { Drawer } from "./mui/Drawer";
+import Item from "./mui/Item";
+import ItemButton from "./mui/ItemButton";
+import { getIdUser, getUsername } from "../services/StorageService";
+import { getGroups } from "../services/UserService";
 
 const SideBar = () => {
-  const [username, setUsername] = useState("");
   const [groups, setGroups] = useState([]);
-  const [option, setOption] = useState("");
-  const [idUser, setIdUser] = useState("");
+  const [option, setOption] = useState("/task");
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
-  const initData = () => {
-    setUsername("Usuario 1");
-    const groupAux = [
-      { _id: "123456", name: "Grupo 1" },
-      { _id: "456789", name: "Grupo 2" },
-    ];
-    setGroups(groupAux);
-    setOption("task");
-    setIdUser("12045");
-  };
-
-  useEffect(() => {
-    initData();
-  }, []);
-
   const goTo = (route) => {
+    setOption(route);
     navigate(route, { replace: true });
   };
 
-  const openDialog = () => {
-    setOpen(true);
+  const getGroupsFromApi = () => {
+    getGroups(getIdUser()).then((data) => {
+      if (data.data) {
+        setGroups(data.data);
+      }
+    });
   };
 
-  const closeDialog = () => {
-    setOpen(false);
-  };
+  useEffect(() => {
+    getGroupsFromApi();
+  }, []);
 
   return (
     <>
-      <CreateGroupDialog
-        open={open}
-        idUser={idUser}
-        closeDialog={closeDialog}
-      />
+      <CreateGroupDialog open={open} idUser={getIdUser()} setOpen={setOpen} />
       <Drawer variant="permanent" open={true}>
         <List component="nav">
-          <ListItem>
-            <ListItemIcon>
-              <PersonIcon />
-            </ListItemIcon>
-            <ListItemText primary={username} />
-          </ListItem>
+          <Item description={getUsername()} icon={<PersonIcon />} />
           <Divider sx={{ my: 1 }} />
-          <ListItemButton
-            onClick={() => {
-              setOption("task");
-              goTo("/todo-app/task");
-            }}
-            selected={"task" === option ? true : false}
-          >
-            <ListItemIcon>
-              <TaskIcon />
-            </ListItemIcon>
-            <ListItemText primary="Mis Tareas" />
-          </ListItemButton>
+          <ItemButton
+            onClick={() => goTo("/task")}
+            description="Mis Tareas"
+            icon={<TaskIcon />}
+            selected={"/task" === option ? true : false}
+          />
           <Divider sx={{ my: 1 }} />
-          <ListItemButton onClick={openDialog}>
-            <ListItemIcon>
-              <GroupIcon />
-            </ListItemIcon>
-            <ListItemText primary="Crear Grupo" />
-          </ListItemButton>
+          <ItemButton
+            onClick={() => setOpen(true)}
+            description="Crear Grupo"
+            icon={<GroupIcon />}
+            selected={false}
+          />
           <Divider sx={{ my: 1 }} />
           <ListSubheader component="div">Mis Grupos</ListSubheader>
           {groups.map((group) => {
             return (
-              <ListItemButton
+              <ItemButton
                 key={group._id}
-                onClick={() => {
-                  setOption(group._id.toString());
-                  goTo(`/todo-app/group/${group._id}`);
-                }}
-                selected={group._id.toString() === option ? true : false}
-              >
-                <ListItemIcon>
-                  <GroupIcon />
-                </ListItemIcon>
-                <ListItemText primary={group.name} />
-              </ListItemButton>
+                onClick={() => goTo(`/group/${group._id}`)}
+                description={group.name}
+                icon={<GroupIcon />}
+                selected={`/group/${group._id}` === option ? true : false}
+              />
             );
           })}
           <Divider sx={{ my: 1 }} />
-          <ListItemButton onClick={() => goTo("/login")}>
-            <ListItemIcon>
-              <LogoutIcon />
-            </ListItemIcon>
-            <ListItemText primary="Cerrar Sesión" />
-          </ListItemButton>
+          <ItemButton
+            onClick={() => goTo("/login")}
+            description="Cerrar Sesión"
+            icon={<LogoutIcon />}
+            selected={false}
+          />
         </List>
       </Drawer>
     </>
