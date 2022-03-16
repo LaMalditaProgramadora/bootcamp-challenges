@@ -11,20 +11,20 @@ export const AppRouter = () => {
   return useRoutes([
     {
       path: "/",
-      element: <Layout />,
-      children: [
-        { path: "task", element: <Task /> },
-        { path: "group/:id", element: <Group /> },
-      ],
-    },
-    {
-      path: "/",
       element: <LoginTheme />,
       children: [
         { path: "/", element: <Navigate to="/login" /> },
         { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },
         { path: "passwordRecovery", element: <PasswordRecovery /> },
+      ],
+    },
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        { path: "task", element: <Task /> },
+        { path: "group/:id", element: <Group /> },
       ],
     },
   ]);

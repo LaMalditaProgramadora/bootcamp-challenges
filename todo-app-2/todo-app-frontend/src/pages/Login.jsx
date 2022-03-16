@@ -27,9 +27,9 @@ const Login = () => {
     };
     if (user.username !== "" && user.password !== "") {
       login(user).then((data) => {
-        setSnackbar({ open: true, message: "data.message" });
+        setSnackbar({ open: true, message: data.message });
         if (data.status === 1) {
-          setAll(data.data._id, data.data.username);
+          setAll(data.data._id, data.data.username, "Bearer " + data.data.token.toString());
           navigate("/task", { replace: true });
         }
       });

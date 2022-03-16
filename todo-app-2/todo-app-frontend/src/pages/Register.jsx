@@ -21,7 +21,7 @@ const Register = () => {
     };
     if (user.username !== "" && user.password !== "" && user.email !== "") {
       register(user).then((data) => {
-        setSnackbar({ open: true, message: "data.message" });
+        setSnackbar({ open: true, message: data.message });
         if (data.status === 1) {
           navigate("/login", { replace: true });
         }

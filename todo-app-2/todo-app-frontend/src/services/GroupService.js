@@ -1,15 +1,26 @@
 import httpClient from "../utils/httpClient";
+import { getToken } from "../services/StorageService";
 
 export const create = async (group) => {
-  const data = await httpClient.post("/group/create", group).then((v) => {
-    return v.data;
-  });
+  const data = await httpClient
+    .post("/group/create", group, {
+      headers: {
+        Authorization: getToken(),
+      },
+    })
+    .then((v) => {
+      return v.data;
+    });
   return data;
 };
 
 export const addTaskGroup = async (idGroup, task) => {
   const data = await httpClient
-    .post(`/group/addTask?id=${idGroup}`, task)
+    .post(`/group/addTask?id=${idGroup}`, task, {
+      headers: {
+        Authorization: getToken(),
+      },
+    })
     .then((v) => {
       return v.data;
     });
@@ -18,7 +29,11 @@ export const addTaskGroup = async (idGroup, task) => {
 
 export const removeTaskGroup = async (idGroup, idTask) => {
   const data = await httpClient
-    .delete(`/group/removeTask?idGroup=${idGroup}&idTask=${idTask}`)
+    .delete(`/group/removeTask?idGroup=${idGroup}&idTask=${idTask}`, {
+      headers: {
+        Authorization: getToken(),
+      },
+    })
     .then((v) => {
       return v.data;
     });
@@ -26,13 +41,27 @@ export const removeTaskGroup = async (idGroup, idTask) => {
 };
 
 export const get = async (id) => {
-  const data = await httpClient.get(`/group/get?id=${id}`).then((v) => v.data);
+  const data = await httpClient
+    .get(`/group/get?id=${id}`, {
+      headers: {
+        Authorization: getToken(),
+      },
+    })
+    .then((v) => v.data);
   return data;
 };
 
 export const addUser = async (idGroup, username) => {
   const data = await httpClient
-    .post(`/group/addUser?idGroup=${idGroup}&username=${username}`, {})
+    .post(
+      `/group/addUser?idGroup=${idGroup}&username=${username}`,
+      {},
+      {
+        headers: {
+          Authorization: getToken(),
+        },
+      }
+    )
     .then((v) => {
       return v.data;
     });
@@ -41,7 +70,11 @@ export const addUser = async (idGroup, username) => {
 
 export const removeUser = async (idGroup, idUser) => {
   const data = await httpClient
-    .delete(`/group/removeUser?idGroup=${idGroup}&idUser=${idUser}`)
+    .delete(`/group/removeUser?idGroup=${idGroup}&idUser=${idUser}`, {
+      headers: {
+        Authorization: getToken(),
+      },
+    })
     .then((v) => {
       return v.data;
     });
