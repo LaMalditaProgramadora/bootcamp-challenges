@@ -1,8 +1,9 @@
 import express from "express";
-
+import { validateToken } from "../middlewares/_index.js";
 import { GroupController } from "../controllers/_index.js";
 
-const { create, get, addTask, removeTask, addUser, removeUser } = GroupController;
+const { create, get, addTask, removeTask, addUser, removeUser } =
+  GroupController;
 
 const router = express.Router();
 
@@ -15,11 +16,11 @@ const groupRouter = {
   REMOVE_USER: "/group/removeUser",
 };
 
-router.post(groupRouter.CREATE, create);
-router.get(groupRouter.GET, get);
-router.post(groupRouter.ADD_TASK, addTask);
-router.delete(groupRouter.REMOVE_TASK, removeTask);
-router.post(groupRouter.ADD_USER, addUser);
-router.delete(groupRouter.REMOVE_USER, removeUser);
+router.post(groupRouter.CREATE, validateToken, create);
+router.get(groupRouter.GET, validateToken, get);
+router.post(groupRouter.ADD_TASK, validateToken, addTask);
+router.delete(groupRouter.REMOVE_TASK, validateToken, removeTask);
+router.post(groupRouter.ADD_USER, validateToken, addUser);
+router.delete(groupRouter.REMOVE_USER, validateToken, removeUser);
 
 export default router;

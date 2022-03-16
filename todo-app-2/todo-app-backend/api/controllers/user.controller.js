@@ -1,6 +1,12 @@
 import { User, Task } from "../models/_index.js";
 import { encryptPassword, comparePassword } from "../utils/encrypt.js";
 import { createResponse } from "../utils/response.js";
+import { generateString } from "../utils/randomString.js";
+import { sendMail } from "../utils/emailSender.js";
+import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+
+dotenv.config();
 
 export const login = async (req, res) => {
   const body = req.body;
@@ -11,13 +17,25 @@ export const login = async (req, res) => {
     res.json(createResponse(0, "Usuario incorrecto", null));
   } else {
     if (comparePassword(body.password, user.password)) {
-      const userWithoutPassword = {
-        _id: user._id,
-        username: user.username,
-        email: user.email,
-        password: "******",
-      };
-      res.json(createResponse(1, "Login exitoso", userWithoutPassword));
+      jwt.sign(
+        { exp: Math.floor(Date.now() / 1000) + 36000, _id: user._id },
+        process.env.SECRET_KEY,
+        (error, token) => {
+          if (!error) {
+            const userWithoutPassword = {
+              _id: user._id,
+              username: user.username,
+              email: user.email,
+              password: "******",
+              token: token,
+            };
+            res.json(createResponse(1, "Login exitoso", userWithoutPassword));
+          } else {
+            console.log(error);
+            res.json(createResponse(-1, "Error en token", null));
+          }
+        }
+      );
     } else {
       res.json(createResponse(-1, "Contraseña incorrecta", null));
     }
@@ -92,4 +110,26 @@ export const getTasks = async (req, res) => {
   const { id: id } = req.query;
   const user = await User.findById(id).populate("tasks");
   res.json(createResponse(1, "Tareas encontradas", user.tasks));
+};
+
+export const restorePassword = async (req, res) => {
+  try {
+    const { email: email } = req.query;
+    let user = await User.findOne({ email: email });
+    if (user === null) {
+      res.json(createResponse(0, "No se encontró usuario", {}));
+    } else {
+      const password = generateString();
+      user.password = encryptPassword(password);
+      const userSave = await user.save();
+      const result = await sendMail(user.email, password);
+      if (result === true) {
+        res.json(createResponse(1, "Envío exitoso", {}));
+      } else {
+        res.json(createResponse(-1, "Error al enviar correo", {}));
+      }
+    }
+  } catch {
+    res.json(createResponse(-1, "Error en el servidor", null));
+  }
 };
