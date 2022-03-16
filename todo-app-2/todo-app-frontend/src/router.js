@@ -20,7 +20,7 @@ export const AppRouter = () => {
       ],
     },
     {
-      path: "/",
+      path: "/todo-app/",
       element: <Layout />,
       children: [
         { path: "task", element: <Task /> },

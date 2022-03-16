@@ -50,7 +50,7 @@ const SideBar = () => {
           <Item description={getUsername()} icon={<PersonIcon />} />
           <Divider sx={{ my: 1 }} />
           <ItemButton
-            onClick={() => goTo("/task")}
+            onClick={() => goTo("/todo-app/task")}
             description="Mis Tareas"
             icon={<TaskIcon />}
             selected={"/task" === option ? true : false}
@@ -68,7 +68,7 @@ const SideBar = () => {
             return (
               <ItemButton
                 key={group._id}
-                onClick={() => goTo(`/group/${group._id}`)}
+                onClick={() => goTo(`/todo-app/group/${group._id}`)}
                 description={group.name}
                 icon={<GroupIcon />}
                 selected={`/group/${group._id}` === option ? true : false}
