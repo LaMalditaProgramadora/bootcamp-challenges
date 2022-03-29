@@ -30,7 +30,7 @@ const Login = () => {
         setSnackbar({ open: true, message: data.message });
         if (data.status === 1) {
           setAll(data.data._id, data.data.username, "Bearer " + data.data.token.toString());
-          navigate("/task", { replace: true });
+          navigate("/todo-app/task", { replace: true });
         }
       });
     } else {
