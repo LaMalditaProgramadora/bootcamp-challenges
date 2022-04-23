@@ -1,0 +1,29 @@
+{
+  "name": "assesment-ii",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "set NODE_ENV=test&& jest",
+    "test:watch": "jest --watch",
+    "start": "node server.js",
+    "dev": "set NODE_ENV=dev&& nodemon server.js",
+    "server-test": "set NODE_ENV=test&& nodemon server.js",
+    "test:coverage": "set NODE_ENV=test&& jest --coverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.17.9",
+    "axios": "^0.26.1",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "jest": "^27.5.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.0",
+    "nodemon": "^2.0.15"
+  }
+}
