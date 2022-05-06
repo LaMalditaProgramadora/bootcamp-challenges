@@ -1,5 +1,5 @@
-import User from "./user.model.js";
-import List from "./list.model.js";
-import Fav from "./fav.model.js";
+import UserModel from "./user.model.js";
+import ListModel from "./list.model.js";
+import FavModel from "./fav.model.js";
 
-export { User, List, Fav };
+export { UserModel, ListModel, FavModel };
