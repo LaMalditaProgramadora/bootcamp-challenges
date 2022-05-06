@@ -62,4 +62,37 @@ describe("List Tests", () => {
     expect(result.data.status).toEqual(1);
     expect(result.data.message).toEqual("Eliminación exitosa");
   });
+
+  it("Test Error en el servidor -  Listar", async () => {
+    const result = await axios.get(`http://localhost:3000/api/favs?id=undefined`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    expect(result.data.status).toEqual(-1);
+    expect(result.data.message).toEqual("Error en el servidor");
+  });
+
+  it("Test Error en el servidor - Listar por id", async () => {
+    const result = await axios.get(`http://localhost:3000/api/favs/undefined`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    expect(result.data.status).toEqual(-1);
+    expect(result.data.message).toEqual("Error en el servidor");
+  });
+  
+
+  it("Test Error en el servidor - Eliminar", async () => {
+    const result = await axios.delete(`http://localhost:3000/api/favs/undefined`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    expect(result.data.status).toEqual(-1);
+    expect(result.data.message).toEqual("Error en el servidor");
+  });
+  
+  
 });

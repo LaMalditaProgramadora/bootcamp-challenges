@@ -29,6 +29,7 @@ describe("List Tests", () => {
     token = login.data.data.token;
   });
 
+
   it("Test Creación Exitosa", async () => {
     const result = await axios.post(
       "http://localhost:3000/api/favs/addFav",
@@ -68,5 +69,31 @@ describe("List Tests", () => {
     );
     expect(result.data.status).toEqual(1);
     expect(result.data.message).toEqual("Eliminación exitosa");
+  });
+
+  it("Test Error en el servidor - Listar", async () => {
+    const result = await axios.get(
+      `http://localhost:3000/api/favs/listById/undefined`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    expect(result.data.status).toEqual(-1);
+    expect(result.data.message).toEqual("Error en el servidor");
+  });
+
+  it("Test Error en el servidor - Eliminación", async () => {
+    const result = await axios.delete(
+      `http://localhost:3000/api/favs/deleteFav/undefined`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    expect(result.data.status).toEqual(-1);
+    expect(result.data.message).toEqual("Error en el servidor");
   });
 });
